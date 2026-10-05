@@ -340,3 +340,11 @@ h3 { font-size: 1.1rem; }
   .reveal { opacity: 1; transform: none; }
   #chart:not(.draw) .item { opacity: 1; }
 }
+
+/* role -> project links */
+.role-projects { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin-top: .9rem; }
+.role-projects > span { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-right: .2rem; }
+.pchip { font: 500 .78rem Inter, sans-serif; padding: .28rem .7rem; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--c1) 40%, transparent); background: color-mix(in srgb, var(--c1) 8%, transparent); color: var(--ink); cursor: pointer; transition: all .2s; }
+.pchip:hover { background: color-mix(in srgb, var(--c1) 22%, transparent); box-shadow: 0 0 14px color-mix(in srgb, var(--c1) 35%, transparent); transform: translateY(-1px); }
+.more-wrap { display: flex; justify-content: center; margin-top: 1.4rem; }
+.more-wrap[hidden] { display: none; }

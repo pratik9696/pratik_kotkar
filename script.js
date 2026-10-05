@@ -190,6 +190,10 @@
   const mq = allSkills.map((s) => `<span>${esc(s)}</span>`).join('');
   $('#marquee').innerHTML = mq + mq;
 
+  const projChips = (ids) => ids && ids.length
+    ? `<div class="role-projects"><span class="mono">projects</span>${ids.map((id) => `<button type="button" class="pchip" data-open="${esc(id)}">${esc(PROJECTS.find((p) => p.id === id).name)}</button>`).join('')}</div>`
+    : '';
+
   /* =====================================================
      timeline chart
   ===================================================== */
@@ -258,7 +262,7 @@
     const y0 = LANES.role.y + 10, h = LANES.role.h - 20;
     const g = makeItem(`${r.title}, ${r.company}, ${r.range}`, x0, (n) => select(n,
       `<h3>${esc(r.title)} · ${esc(r.company)}</h3><div class="meta">${esc(r.range)} · ${esc(r.place)}</div>` +
-      `<ul>${r.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul>`));
+      `<ul>${r.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul>${projChips(r.projectIds)}`));
     svgEl('rect', { class: 'role-bar' + (r.end == null ? ' now' : ''), x: x0, y: y0, width: w, height: h, rx: 8 }, g);
     const clip = svgEl('clipPath', { id: 'c-' + r.id }, g);
     const narrow = w < 90;
@@ -305,18 +309,25 @@
   const ICONS = {
     ai: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><circle cx="12" cy="11" r="2.4"/><path d="M7.7 8.2l2.6 1.6M16.3 7.4l-2.7 2.6M12 13.4V16"/></svg>',
     prod: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/></svg>',
+    ml: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/><path d="M4 7l6-3 6 5 5-4"/></svg>',
     app: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>'
   };
-  const statusClass = (s) => ({ 'In progress': 's-prog', 'Coming soon': 's-soon', Live: 's-live', Production: 's-prod' }[s] || '');
+  const iconFor = (p) => (p.cat.includes('ai') ? 'ai' : p.cat.includes('ml') ? 'ml' : p.cat.includes('app') ? 'app' : 'prod');
+  const statusClass = (s) => ({ 'In progress': 's-prog', 'Coming soon': 's-soon', Live: 's-live', 'Live prototype': 's-live', Production: 's-prod' }[s] || '');
   const byId = (id) => PROJECTS.find((p) => p.id === id);
   const grid2 = $('#project-grid');
 
+  const LIMIT = 6;
+  let curFilter = 'all', expanded = false;
+  const moreWrap = $('#more-wrap'), moreBtn = $('#more-btn');
   function renderCards(filter) {
-    const list = PROJECTS.filter((p) => filter === 'all' || p.cat.includes(filter));
+    curFilter = filter;
+    const all = PROJECTS.filter((p) => filter === 'all' || p.cat.includes(filter));
+    const capped = filter === 'all' && !expanded && all.length > LIMIT;
+    const list = capped ? all.slice(0, LIMIT) : all;
     grid2.innerHTML = list.map((p, i) => {
-      const primary = p.cat.includes('prod') ? 'prod' : p.cat[0];
-      return `<article class="glass tilt proj-card" id="${esc(p.id)}" data-id="${esc(p.id)}" style="--d:${i * 0.07}s">
-        <div class="proj-top"><span class="ico">${ICONS[primary]}</span><span class="badge ${statusClass(p.status)}">${esc(p.status)}</span></div>
+      return `<article class="glass tilt proj-card" id="${esc(p.id)}" data-id="${esc(p.id)}" style="--d:${(i % LIMIT) * 0.07}s">
+        <div class="proj-top"><span class="ico">${ICONS[iconFor(p)]}</span><span class="badge ${statusClass(p.status)}">${esc(p.status)}</span></div>
         <h3>${esc(p.name)}</h3><div class="tag-chip">${esc(p.tag)}</div>
         <p>${esc(p.blurb)}</p>
         ${p.kpi ? `<div class="kpi"><b>${esc(p.kpi.v)}</b><span>${esc(p.kpi.l)}</span></div>` : ''}
@@ -325,7 +336,11 @@
           ${p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">Source ↗</a>` : '<span style="color:var(--muted);font-size:.8rem">private</span>'}</div>
       </article>`;
     }).join('');
+    moreWrap.hidden = !(filter === 'all' && all.length > LIMIT);
+    moreBtn.querySelector('span').textContent = expanded ? 'Show fewer' : `Show all ${all.length} projects`;
+    moreBtn.setAttribute('aria-expanded', expanded);
   }
+  moreBtn.addEventListener('click', () => { expanded = !expanded; renderCards('all'); if (!expanded) $('#projects').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }); });
   renderCards('all');
   grid2.addEventListener('click', (e) => {
     if (e.target.closest('a')) return;
@@ -349,6 +364,7 @@
       <h3>${esc(r.title)}</h3>
       <div class="co">${esc(r.company)} · ${esc(r.place)}</div>
       <ul>${r.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul>
+      ${projChips(r.projectIds)}
     </li>`).join('');
   $('#skills-grid').innerHTML = SKILLS.map(([title, items], i) =>
     `<div class="glass card tilt reveal" style="--d:${i * 0.06}s"><h3>// ${esc(title)}</h3><div class="chips">${items.map((s) => `<span class="chip">${esc(s)}</span>`).join('')}</div></div>`).join('');
@@ -375,9 +391,9 @@
 
   function openProject(id) {
     const p = byId(id); if (!p) return;
-    const primary = p.cat.includes('prod') ? 'prod' : p.cat[0];
+    const primary = iconFor(p);
     const flow = p.arch.length
-      ? `<h4>${p.id === 'bicycle' ? 'Five-agent pipeline' : 'How it works'}</h4><div class="flow">` +
+      ? `<h4>${esc(p.archTitle || 'How it works')}</h4><div class="flow">` +
         p.arch.map((s, i) => `${i ? `<span class="sep" style="--i:${i}">→</span>` : ''}<span class="step" style="--i:${i}"><b>${String(i + 1).padStart(2, '0')}</b>${esc(s)}</span>`).join('') + '</div>'
       : '';
     mBody.innerHTML = `
@@ -385,8 +401,9 @@
       <h2 id="m-title">${esc(p.name)}</h2>
       <p class="lead">${esc(p.blurb)}</p>
       ${p.kpi ? `<div class="kpi"><b>${esc(p.kpi.v)}</b><span>${esc(p.kpi.l)}</span></div>` : ''}
+      ${p.problem ? `<h4>The problem</h4><p class="lead" style="margin:0">${esc(p.problem)}</p>` : ''}
       ${flow}
-      ${p.facts.length ? `<h4>Highlights</h4><div class="tiles">${p.facts.map((f) => `<div class="tile">${esc(f)}</div>`).join('')}</div>` : ''}
+      ${p.facts.length ? `<h4>${p.problem ? 'What it moves' : 'Highlights'}</h4><div class="tiles">${p.facts.map((f) => `<div class="tile">${esc(f)}</div>`).join('')}</div>` : ''}
       ${p.stack.length ? `<h4>Stack</h4><div class="chips">${p.stack.map((s) => `<span class="chip">${esc(s)}</span>`).join('')}</div>` : ''}
       ${p.note ? `<p class="note">${esc(p.note)}</p>` : ''}
       <div class="m-actions">
