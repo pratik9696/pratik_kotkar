@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pratik Kotkar — Principal Data Scientist · Applied AI/ML</title>
 <meta name="description" content="Pratik Kotkar — Principal Data Scientist and Applied AI/ML lead. Agentic systems, LLM/RAG pipelines, causal ML and risk analytics. 8+ years in production ML.">
-<meta property="og:title" content="Pratik Kotkar — Applied AI/ML">
-<meta property="og:description" content="Agentic systems, RAG, causal ML and production forecasting. Career timeline and projects.">
+<meta property="og:title" content="Pratik Kotkar — ML systems that survive contact with production">
+<meta property="og:description" content="Agentic systems, RAG, causal ML and production forecasting. Career timeline and case files.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%2322d3ee'/><stop offset='1' stop-color='%238b5cf6'/></linearGradient></defs><rect width='64' height='64' rx='16' fill='%2305070d'/><rect x='2' y='2' width='60' height='60' rx='14' fill='none' stroke='url(%23g)' stroke-width='3'/><text x='32' y='42' font-size='26' font-family='sans-serif' font-weight='700' text-anchor='middle' fill='url(%23g)'>PK</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23e2401b'/><text x='32' y='45' font-size='34' font-family='Georgia,serif' font-style='italic' text-anchor='middle' fill='%23efe9dd'>pk</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script>
   try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
@@ -19,133 +19,120 @@
 </head>
 <body>
 
-<div id="progress" aria-hidden="true"></div>
-<canvas id="bg" aria-hidden="true"></canvas>
-<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
-<div class="grid-overlay" aria-hidden="true"></div>
-<div id="glow" aria-hidden="true"></div>
+<div class="ticker" aria-label="Career highlights ticker"><div class="ticker-track" id="ticker"></div></div>
 
-<header class="nav">
-  <div class="wrap nav-inner glass">
-    <a class="brand" href="#top" aria-label="Pratik Kotkar, home"><span class="mark">PK</span><span class="brand-name">Pratik Kotkar</span></a>
+<header class="mast">
+  <div class="wrap mast-in">
+    <a class="logo" href="#top" aria-label="Pratik Kotkar, home">Pratik <i>Kotkar</i></a>
     <nav aria-label="Primary">
       <a href="#timeline">Timeline</a>
-      <a href="#projects">Projects</a>
+      <a href="#projects">Case files</a>
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button id="palette-btn" class="kbd-btn" type="button" aria-label="Open command palette"><span>Search</span><kbd>⌘K</kbd></button>
-    <button id="theme" class="icon-btn" type="button" aria-label="Toggle colour theme">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-    </button>
+    <div class="tools">
+      <button id="palette-btn" class="tool" type="button" aria-label="Open index search">Index <kbd>/</kbd></button>
+      <button id="theme" class="tool" type="button" aria-label="Switch between paper and night edition">Night edition</button>
+    </div>
   </div>
 </header>
 
 <main id="top">
 
 <section class="hero wrap">
-  <div class="hero-copy">
-    <p class="status"><span class="pulse"></span>Bangalore, India · Open to conversations</p>
-    <h1>I build production ML and <span class="typed-wrap"><span class="typed grad" id="typed">agentic AI systems</span><span class="caret"></span></span></h1>
-    <p class="lede">Principal Data Scientist with 8+ years across fintech, e-commerce and telecom. Currently architecting Claude-based multi-agent pipelines, RAG layers and causal-ML platforms at Bicycle.ai, previously driving $280K+ monthly GMV impact at Twid Pay.</p>
-    <div class="cta">
-      <a class="btn primary" href="#projects"><span>Explore projects</span><i class="arrow">→</i></a>
-      <a class="btn" href="https://github.com/pratik9696/resume/blob/HEAD/Pratik_Kotkar_AI_ML_Eng.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
-      <a class="btn ghost" href="https://github.com/pratik9696" target="_blank" rel="noopener">GitHub ↗</a>
-      <a class="btn ghost" href="https://linkedin.com/in/pratikkotkar9696" target="_blank" rel="noopener">LinkedIn ↗</a>
+  <p class="dateline mono"><span>Applied AI/ML</span><span>Bangalore, India</span><span id="edition">Edition</span></p>
+  <h1>ML systems that survive contact with <em>production<svg class="scribble" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 15 C 60 4, 120 22, 190 11 S 330 6, 397 14"/></svg></em>.</h1>
+  <div class="hero-sub">
+    <p class="lede">Principal Data Scientist, 8+ years across fintech, e-commerce and telecom. Today I architect Claude-based multi-agent pipelines, RAG layers and causal-ML platforms at Bicycle.ai. Before that: $280K+ of monthly GMV impact at Twid Pay.</p>
+    <div class="hero-links">
+      <a class="solid" href="mailto:pratikkotkar9696@gmail.com">Email me</a>
+      <a class="ulink" href="#projects">See the case files ↓</a>
+      <a class="ulink" href="https://github.com/pratik9696/resume/blob/HEAD/Pratik_Kotkar_AI_ML_Eng.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+      <a class="ulink" href="https://github.com/pratik9696" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="ulink" href="https://linkedin.com/in/pratikkotkar9696" target="_blank" rel="noopener">LinkedIn ↗</a>
     </div>
   </div>
 
-  <aside class="term glass tilt" aria-label="Animated sketch of the five-agent forecasting pipeline">
-    <div class="term-bar"><i></i><i></i><i></i><span class="mono">forecast-pipeline.run</span><em class="live">● live</em></div>
-    <ol class="agents" id="agents">
-      <li><b>01</b><span>Data Analyzer</span><small>discovers forecastable metrics</small><u></u></li>
-      <li><b>02</b><span>Feasibility Classifier</span><small>ADI / CV² demand shape</small><u></u></li>
-      <li><b>03</b><span>Dataset Builder</span><small>zero hard-coded schema</small><u></u></li>
-      <li><b>04</b><span>Model Trainer</span><small>Prophet · SARIMA · LSTM · Croston</small><u></u></li>
-      <li><b>05</b><span>Results Analyst</span><small>benchmarks + stockout risk</small><u></u></li>
-    </ol>
-    <div class="term-foot mono"><div class="bar"><i id="bar"></i></div><span id="log">&gt; booting agents…</span></div>
-  </aside>
+  <figure class="hero-fig">
+    <svg id="hero-chart" viewBox="0 0 1000 320" role="img" aria-label="Illustrative chart of responsibility growing across five roles from 2018 to today, followed by a dashed forecast with a widening prediction interval. Move the pointer along it to read the role at any date."></svg>
+    <figcaption class="mono"><b>Fig. 0</b> Responsibility over time, arbitrary units. Dashed region is the 80% prediction interval. Method: self-reported. <span class="hint">Move your pointer across the chart.</span></figcaption>
+  </figure>
 </section>
 
-<section class="wrap">
-  <dl class="stats" aria-label="Highlights">
-    <div class="glass tilt reveal"><dt><span class="count" data-to="280" data-pre="$" data-suf="K+">$280K+</span></dt><dd>monthly GMV impact from RFM models</dd></div>
-    <div class="glass tilt reveal" style="--d:.08s"><dt><span class="count" data-to="34" data-pre="~" data-suf="M">~34M</span></dt><dd>events validated in the churn platform</dd></div>
-    <div class="glass tilt reveal" style="--d:.16s"><dt><span class="count" data-to="64" data-suf="%">64%</span></dt><dd>API latency cut, 700ms → 250ms</dd></div>
-    <div class="glass tilt reveal" style="--d:.24s"><dt><span class="count" data-to="675" data-pre="~" data-suf="K">~675K</span></dt><dd>daily orders in the forecasting engine</dd></div>
-  </dl>
+<section class="wrap figures" aria-label="Highlights">
+  <div class="figure reveal"><div class="n"><span class="count" data-to="280" data-pre="$" data-suf="K">$280K</span></div><p>monthly GMV impact from RFM models <em>Twid Pay</em></p></div>
+  <div class="figure reveal" style="--d:.07s"><div class="n"><span class="count" data-to="34" data-pre="~" data-suf="M">~34M</span></div><p>events validated in the churn platform <em>Bicycle.ai</em></p></div>
+  <div class="figure reveal" style="--d:.14s"><div class="n"><span class="count" data-to="64" data-pre="−" data-suf="%">−64%</span></div><p>API latency, 700ms to 250ms <em>Twid Pay</em></p></div>
+  <div class="figure reveal" style="--d:.21s"><div class="n"><span class="count" data-to="675" data-pre="~" data-suf="K">~675K</span></div><p>daily orders in the forecasting engine <em>Bicycle.ai</em></p></div>
 </section>
-
-<div class="marquee" aria-hidden="true"><div class="track" id="marquee"></div></div>
 
 <section id="timeline" class="wrap section">
-  <div class="section-head reveal">
-    <span class="idx mono">01 // timeline</span>
-    <h2>Career &amp; project <span class="grad">timeline</span></h2>
-    <p>Eight years, five roles, the work shipped inside each, and a growing pile of repos. Select any bar or marker for details.</p>
-  </div>
-  <div class="glass chart-card reveal">
-    <div class="legend" aria-hidden="true">
+  <header class="sec-head reveal">
+    <span class="sec-no mono">§ 1</span>
+    <h2>Eight years, <em>drawn to scale</em></h2>
+    <p>Five roles, the work shipped inside each one, and the repos along the way. Select anything for the details.</p>
+  </header>
+  <figure class="plate reveal">
+    <div class="legend mono" aria-hidden="true">
       <span><i class="sw role"></i>Role</span>
       <span><i class="sw work"></i>Work inside a role</span>
       <span><i class="sw proj"></i>Project / repo</span>
       <span><i class="sw ms"></i>Milestone</span>
     </div>
     <div class="chart-scroll" tabindex="0" aria-label="Career timeline chart, scrollable">
-      <svg id="chart" role="img" aria-label="Timeline from 2018 to 2026 showing roles, projects and milestones"></svg>
+      <svg id="chart" role="img" aria-label="Timeline from 2018 to 2026 showing roles, work inside each role, projects and milestones"></svg>
     </div>
     <div id="detail" class="detail" aria-live="polite"></div>
-  </div>
+    <figcaption class="mono"><b>Fig. 1</b> Roles, work and projects, 2018 to October 2026. Dates inside a role are approximate.</figcaption>
+  </figure>
 </section>
 
 <section id="projects" class="wrap section">
-  <div class="section-head reveal">
-    <span class="idx mono">02 // projects</span>
-    <h2>Things I’ve <span class="grad">built</span></h2>
-    <p>Recent agentic and product builds first, with shipped work from earlier roles behind “Show all”. Where a repo is public it is linked; everything else is described from the work itself.</p>
-  </div>
-  <div class="filters reveal" id="filters" role="tablist" aria-label="Filter projects">
+  <header class="sec-head reveal">
+    <span class="sec-no mono">§ 2</span>
+    <h2>Case <em>files</em></h2>
+    <p>Recent agentic and product work first, then the ML I shipped in earlier roles. Public repos are linked; the rest is described from the work itself.</p>
+  </header>
+  <div class="filters mono reveal" id="filters" role="tablist" aria-label="Filter case files">
     <button role="tab" class="on" data-f="all" aria-selected="true">All</button>
-    <button role="tab" data-f="ai" aria-selected="false">AI &amp; Agents</button>
+    <button role="tab" data-f="ai" aria-selected="false">AI &amp; agents</button>
     <button role="tab" data-f="prod" aria-selected="false">Production</button>
-    <button role="tab" data-f="app" aria-selected="false">Apps &amp; Web</button>
-    <button role="tab" data-f="ml" aria-selected="false">Fintech &amp; Analytics ML</button>
+    <button role="tab" data-f="app" aria-selected="false">Apps &amp; web</button>
+    <button role="tab" data-f="ml" aria-selected="false">Fintech &amp; analytics ML</button>
   </div>
-  <div class="grid" id="project-grid"></div>
-  <div class="more-wrap" id="more-wrap"><button class="btn" id="more-btn" type="button" aria-expanded="false"><span>Show all projects</span><i class="arrow">↓</i></button></div>
+  <ol class="ledger" id="ledger"></ol>
 
-  <h3 class="sub reveal">Also on GitHub</h3>
+  <h3 class="sub mono reveal">Also on GitHub</h3>
   <ul class="repo-list" id="repo-list"></ul>
 </section>
 
 <section id="experience" class="wrap section">
-  <div class="section-head reveal">
-    <span class="idx mono">03 // experience</span>
-    <h2>Where I’ve <span class="grad">worked</span></h2>
-    <p>Highlights from each role. Full detail is in the résumé.</p>
-  </div>
-  <ol class="exp" id="exp"></ol>
+  <header class="sec-head reveal">
+    <span class="sec-no mono">§ 3</span>
+    <h2>Where I’ve <em>worked</em></h2>
+    <p>Highlights from each role. The full list is in the résumé.</p>
+  </header>
+  <ol class="jobs" id="exp"></ol>
 </section>
 
 <section id="skills" class="wrap section">
-  <div class="section-head reveal">
-    <span class="idx mono">04 // skills</span>
-    <h2>Tools of the <span class="grad">trade</span></h2>
-  </div>
-  <div class="skills" id="skills-grid"></div>
+  <header class="sec-head reveal">
+    <span class="sec-no mono">§ 4</span>
+    <h2>Type <em>specimen</em></h2>
+    <p>What I reach for, grouped the way I use it.</p>
+  </header>
+  <dl class="specimen" id="skills-grid"></dl>
 
-  <div class="two">
-    <div class="glass card tilt reveal">
-      <h3>Education</h3>
-      <p><strong>B.E. Computer Science</strong><br>MIT College of Engineering, Pune · 2018</p>
+  <div class="colophon">
+    <div class="reveal">
+      <h3 class="mono">Education</h3>
+      <p class="big"><em>B.E. Computer Science</em><br>MIT College of Engineering, Pune, 2018</p>
     </div>
-    <div class="glass card tilt reveal" style="--d:.1s">
-      <h3>Achievements</h3>
+    <div class="reveal" style="--d:.1s">
+      <h3 class="mono">Achievements</h3>
       <ul class="plain">
-        <li>Top 100 Finalist, Rakathon by Rakuten (LLM-based project), Sep 2023</li>
+        <li>Top 100 finalist, Rakathon by Rakuten (LLM-based project), Sep 2023</li>
         <li>Winner, Vodafone-Idea Hackathon (VIL CodeFest), Feb 2020</li>
         <li>AWS Certified Machine Learning Practitioner (pursuing)</li>
       </ul>
@@ -153,40 +140,41 @@
   </div>
 </section>
 
-<section id="contact" class="wrap section">
-  <div class="cta-card glass reveal">
-    <span class="idx mono">05 // contact</span>
-    <h2>Let’s build something <span class="grad">intelligent</span></h2>
-    <p>Hiring for applied AI, agentic systems or ML platform work, or just want to compare notes on RAG evals? Email is best.</p>
-    <div class="cta center">
-      <a class="btn primary" href="mailto:pratikkotkar9696@gmail.com"><span>pratikkotkar9696@gmail.com</span><i class="arrow">→</i></a>
-      <a class="btn" href="https://linkedin.com/in/pratikkotkar9696" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="btn" href="https://github.com/pratik9696" target="_blank" rel="noopener">GitHub ↗</a>
-    </div>
+<section id="contact" class="wrap section contact">
+  <span class="sec-no mono reveal">§ 5</span>
+  <h2 class="reveal">Say <em>hello.</em></h2>
+  <p class="reveal">Hiring for applied AI, agentic systems or ML platform work, or want to compare notes on RAG evals? Email is best.</p>
+  <a class="mail reveal" href="mailto:pratikkotkar9696@gmail.com"><mark>pratikkotkar9696@gmail.com</mark></a>
+  <p class="hand reveal" aria-hidden="true">↑ that one</p>
+  <div class="contact-links mono reveal">
+    <a href="https://linkedin.com/in/pratikkotkar9696" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="https://github.com/pratik9696" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://github.com/pratik9696/resume/blob/HEAD/Pratik_Kotkar_AI_ML_Eng.pdf" target="_blank" rel="noopener">Résumé ↗</a>
   </div>
 </section>
 
 </main>
 
-<footer class="wrap foot">
+<footer class="wrap foot mono">
   <span>© <span id="yr"></span> Pratik Kotkar</span>
-  <span>Static site, no trackers · press <kbd>/</kbd> to search · <a href="https://github.com/pratik9696/pratik_kotkar" target="_blank" rel="noopener">source</a></span>
+  <span>Set in Instrument Serif and IBM Plex. No trackers. Forecast not guaranteed.</span>
+  <span>Press <kbd>/</kbd> for the index · <a href="https://github.com/pratik9696/pratik_kotkar" target="_blank" rel="noopener">source</a></span>
 </footer>
 
-<!-- project overlay -->
-<div id="modal" class="overlay" hidden>
-  <div class="modal glass" role="dialog" aria-modal="true" aria-labelledby="m-title" tabindex="-1">
-    <button class="close" id="m-close" type="button" aria-label="Close">✕</button>
+<!-- case-file drawer -->
+<div id="modal" class="scrim" hidden>
+  <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="m-title" tabindex="-1">
+    <button class="close mono" id="m-close" type="button" aria-label="Close case file">Close ✕</button>
     <div id="m-body"></div>
-  </div>
+  </aside>
 </div>
 
-<!-- command palette -->
-<div id="palette" class="overlay top" hidden>
-  <div class="pal glass" role="dialog" aria-modal="true" aria-label="Command palette">
-    <input id="pal-input" type="text" placeholder="Jump to a section, project or link…" autocomplete="off" spellcheck="false" aria-label="Search">
+<!-- index (command palette) -->
+<div id="palette" class="scrim top" hidden>
+  <div class="pal" role="dialog" aria-modal="true" aria-label="Index search">
+    <input id="pal-input" type="text" placeholder="Search sections, case files, links…" autocomplete="off" spellcheck="false" aria-label="Search">
     <ul id="pal-list" role="listbox"></ul>
-    <div class="pal-foot mono"><span>↑↓ navigate</span><span>↵ open</span><span>esc close</span></div>
+    <div class="pal-foot mono"><span>↑↓ move</span><span>↵ open</span><span>esc close</span></div>
   </div>
 </div>
 
