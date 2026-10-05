@@ -1,11 +1,13 @@
 # Pratik Kotkar — portfolio
 
-Static portfolio site (plain HTML/CSS/JS, no build step) for GitHub Pages.
+An interactive terminal portfolio. Plain HTML/CSS/JS, no build step, hosted on GitHub Pages.
 
-- `index.html` — page structure
-- `data.js` — all content (roles, projects, timeline dates, skills). Edit this file to update the site.
-- `script.js` — renders the interactive SVG timeline, project cards and experience list
-- `styles.css` — styling with automatic light/dark theme
+Type a command (or click one): `whoami`, `impact`, `timeline`, `forecast`, `projects`, `open ezquote`, `log`, `skills`, `contact`, `theme amber`, `tour`, `help`.
+
+- `index.html` — page shell
+- `data.js` — all content (roles, projects, timeline dates, skills). Edit this to update the site.
+- `script.js` — command engine and renderers (neofetch card, git-log experience, diff results, SVG charts)
+- `styles.css` — four themes: midnight, amber, matrix, paper
 
 ## Run locally
 
@@ -17,5 +19,5 @@ Then open http://localhost:8000.
 
 ## Deploy
 
-GitHub Pages: repo **Settings → Pages → Deploy from a branch → `main` / root**.
-Site URL: https://pratik9696.github.io/pratik_kotkar/
+GitHub Pages: **Settings → Pages → Deploy from a branch → `main` / root**.
+Site: https://pratik9696.github.io/pratik_kotkar/

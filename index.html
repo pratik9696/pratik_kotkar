@@ -1,181 +1,60 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="midnight">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pratik Kotkar — Principal Data Scientist · Applied AI/ML</title>
-<meta name="description" content="Pratik Kotkar — Principal Data Scientist and Applied AI/ML lead. Agentic systems, LLM/RAG pipelines, causal ML and risk analytics. 8+ years in production ML.">
-<meta property="og:title" content="Pratik Kotkar — ML systems that survive contact with production">
-<meta property="og:description" content="Agentic systems, RAG, causal ML and production forecasting. Career timeline and case files.">
+<meta name="description" content="Pratik Kotkar — Principal Data Scientist and Applied AI/ML lead. Agentic systems, LLM/RAG pipelines, causal ML and risk analytics. 8+ years in production ML. Type a command or click one.">
+<meta property="og:title" content="pratik@portfolio — ML systems that survive contact with production">
+<meta property="og:description" content="An interactive terminal portfolio: timeline, case files, results and experience as git log.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23e2401b'/><text x='32' y='45' font-size='34' font-family='Georgia,serif' font-style='italic' text-anchor='middle' fill='%23efe9dd'>pk</text></svg>">
+<meta name="theme-color" content="#0b0e14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0e14'/%3E%3Ctext x='8' y='42' font-size='30' font-family='monospace' font-weight='700' fill='%23b6f23a'%3E%26gt%3B%3C/text%3E%3Crect x='34' y='20' width='16' height='26' fill='%23b6f23a'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script>
-  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  try { var t = localStorage.getItem('pk-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
 </head>
 <body>
+<div class="app" id="app">
 
-<div class="ticker" aria-label="Career highlights ticker"><div class="ticker-track" id="ticker"></div></div>
+  <header class="titlebar">
+    <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="title">pratik@portfolio — zsh — bangalore</span>
+    <button id="theme-btn" class="tb-btn" type="button" aria-label="Cycle colour theme">theme</button>
+  </header>
 
-<header class="mast">
-  <div class="wrap mast-in">
-    <a class="logo" href="#top" aria-label="Pratik Kotkar, home">Pratik <i>Kotkar</i></a>
-    <nav aria-label="Primary">
-      <a href="#timeline">Timeline</a>
-      <a href="#projects">Case files</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
+  <main id="scroll" class="scroll" tabindex="-1">
+    <h1 class="sr-only">Pratik Kotkar, Principal Data Scientist and Applied AI/ML lead</h1>
+    <div id="out" class="out" role="log" aria-live="polite" aria-label="Terminal output"></div>
+    <noscript>
+      <div class="out">
+        <p><b>Pratik Kotkar</b> — Principal Data Scientist · Applied AI/ML, Bangalore. 8+ years building production ML and agentic AI systems across fintech, e-commerce and telecom. Currently at Bicycle.ai; previously Twid Pay, Niyo, PharmEasy and Hansen Technologies.</p>
+        <p>This portfolio is an interactive terminal and needs JavaScript. Meanwhile:
+          <a href="mailto:pratikkotkar9696@gmail.com">pratikkotkar9696@gmail.com</a> ·
+          <a href="https://github.com/pratik9696">GitHub</a> ·
+          <a href="https://linkedin.com/in/pratikkotkar9696">LinkedIn</a> ·
+          <a href="https://github.com/pratik9696/resume/blob/HEAD/Pratik_Kotkar_AI_ML_Eng.pdf">Résumé</a></p>
+      </div>
+    </noscript>
+  </main>
+
+  <footer class="dock">
+    <div class="chips" id="chips" role="toolbar" aria-label="Quick commands"></div>
+    <div class="prompt" id="prompt">
+      <span class="ps1" id="ps1"></span>
+      <span class="line" id="line"><span id="pb"></span><span class="cursor" id="pc">&nbsp;</span><span id="pa"></span><span class="ghost" id="pg"></span></span>
+      <input id="in" class="hid" type="text" aria-label="Type a command, then press Enter" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="go">
+    </div>
+    <nav class="tmux" aria-label="Sections">
+      <span class="sess">[pk]</span>
+      <span class="wins" id="wins"></span>
+      <span class="tm-right"><span class="git">⎇ main ✓</span><span id="clock"></span></span>
     </nav>
-    <div class="tools">
-      <button id="palette-btn" class="tool" type="button" aria-label="Open index search">Index <kbd>/</kbd></button>
-      <button id="theme" class="tool" type="button" aria-label="Switch between paper and night edition">Night edition</button>
-    </div>
-  </div>
-</header>
-
-<main id="top">
-
-<section class="hero wrap">
-  <p class="dateline mono"><span>Applied AI/ML</span><span>Bangalore, India</span><span id="edition">Edition</span></p>
-  <h1>ML systems that survive contact with <em>production<svg class="scribble" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 15 C 60 4, 120 22, 190 11 S 330 6, 397 14"/></svg></em>.</h1>
-  <div class="hero-sub">
-    <p class="lede">Principal Data Scientist, 8+ years across fintech, e-commerce and telecom. Today I architect Claude-based multi-agent pipelines, RAG layers and causal-ML platforms at Bicycle.ai. Before that: $280K+ of monthly GMV impact at Twid Pay.</p>
-    <div class="hero-links">
-      <a class="solid" href="mailto:pratikkotkar9696@gmail.com">Email me</a>
-      <a class="ulink" href="#projects">See the case files ↓</a>
-      <a class="ulink" href="https://github.com/pratik9696/resume/blob/HEAD/Pratik_Kotkar_AI_ML_Eng.pdf" target="_blank" rel="noopener">Résumé ↗</a>
-      <a class="ulink" href="https://github.com/pratik9696" target="_blank" rel="noopener">GitHub ↗</a>
-      <a class="ulink" href="https://linkedin.com/in/pratikkotkar9696" target="_blank" rel="noopener">LinkedIn ↗</a>
-    </div>
-  </div>
-
-  <figure class="hero-fig">
-    <svg id="hero-chart" viewBox="0 0 1000 320" role="img" aria-label="Illustrative chart of responsibility growing across five roles from 2018 to today, followed by a dashed forecast with a widening prediction interval. Move the pointer along it to read the role at any date."></svg>
-    <figcaption class="mono"><b>Fig. 0</b> Responsibility over time, arbitrary units. Dashed region is the 80% prediction interval. Method: self-reported. <span class="hint">Move your pointer across the chart.</span></figcaption>
-  </figure>
-</section>
-
-<section class="wrap figures" aria-label="Highlights">
-  <div class="figure reveal"><div class="n"><span class="count" data-to="280" data-pre="$" data-suf="K">$280K</span></div><p>monthly GMV impact from RFM models <em>Twid Pay</em></p></div>
-  <div class="figure reveal" style="--d:.07s"><div class="n"><span class="count" data-to="34" data-pre="~" data-suf="M">~34M</span></div><p>events validated in the churn platform <em>Bicycle.ai</em></p></div>
-  <div class="figure reveal" style="--d:.14s"><div class="n"><span class="count" data-to="64" data-pre="−" data-suf="%">−64%</span></div><p>API latency, 700ms to 250ms <em>Twid Pay</em></p></div>
-  <div class="figure reveal" style="--d:.21s"><div class="n"><span class="count" data-to="675" data-pre="~" data-suf="K">~675K</span></div><p>daily orders in the forecasting engine <em>Bicycle.ai</em></p></div>
-</section>
-
-<section id="timeline" class="wrap section">
-  <header class="sec-head reveal">
-    <span class="sec-no mono">§ 1</span>
-    <h2>Eight years, <em>drawn to scale</em></h2>
-    <p>Five roles, the work shipped inside each one, and the repos along the way. Select anything for the details.</p>
-  </header>
-  <figure class="plate reveal">
-    <div class="legend mono" aria-hidden="true">
-      <span><i class="sw role"></i>Role</span>
-      <span><i class="sw work"></i>Work inside a role</span>
-      <span><i class="sw proj"></i>Project / repo</span>
-      <span><i class="sw ms"></i>Milestone</span>
-    </div>
-    <div class="chart-scroll" tabindex="0" aria-label="Career timeline chart, scrollable">
-      <svg id="chart" role="img" aria-label="Timeline from 2018 to 2026 showing roles, work inside each role, projects and milestones"></svg>
-    </div>
-    <div id="detail" class="detail" aria-live="polite"></div>
-    <figcaption class="mono"><b>Fig. 1</b> Roles, work and projects, 2018 to October 2026. Dates inside a role are approximate.</figcaption>
-  </figure>
-</section>
-
-<section id="projects" class="wrap section">
-  <header class="sec-head reveal">
-    <span class="sec-no mono">§ 2</span>
-    <h2>Case <em>files</em></h2>
-    <p>Recent agentic and product work first, then the ML I shipped in earlier roles. Public repos are linked; the rest is described from the work itself.</p>
-  </header>
-  <div class="filters mono reveal" id="filters" role="tablist" aria-label="Filter case files">
-    <button role="tab" class="on" data-f="all" aria-selected="true">All</button>
-    <button role="tab" data-f="ai" aria-selected="false">AI &amp; agents</button>
-    <button role="tab" data-f="prod" aria-selected="false">Production</button>
-    <button role="tab" data-f="app" aria-selected="false">Apps &amp; web</button>
-    <button role="tab" data-f="ml" aria-selected="false">Fintech &amp; analytics ML</button>
-  </div>
-  <ol class="ledger" id="ledger"></ol>
-
-  <h3 class="sub mono reveal">Also on GitHub</h3>
-  <ul class="repo-list" id="repo-list"></ul>
-</section>
-
-<section id="experience" class="wrap section">
-  <header class="sec-head reveal">
-    <span class="sec-no mono">§ 3</span>
-    <h2>Where I’ve <em>worked</em></h2>
-    <p>Highlights from each role. The full list is in the résumé.</p>
-  </header>
-  <ol class="jobs" id="exp"></ol>
-</section>
-
-<section id="skills" class="wrap section">
-  <header class="sec-head reveal">
-    <span class="sec-no mono">§ 4</span>
-    <h2>Type <em>specimen</em></h2>
-    <p>What I reach for, grouped the way I use it.</p>
-  </header>
-  <dl class="specimen" id="skills-grid"></dl>
-
-  <div class="colophon">
-    <div class="reveal">
-      <h3 class="mono">Education</h3>
-      <p class="big"><em>B.E. Computer Science</em><br>MIT College of Engineering, Pune, 2018</p>
-    </div>
-    <div class="reveal" style="--d:.1s">
-      <h3 class="mono">Achievements</h3>
-      <ul class="plain">
-        <li>Top 100 finalist, Rakathon by Rakuten (LLM-based project), Sep 2023</li>
-        <li>Winner, Vodafone-Idea Hackathon (VIL CodeFest), Feb 2020</li>
-        <li>AWS Certified Machine Learning Practitioner (pursuing)</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="wrap section contact">
-  <span class="sec-no mono reveal">§ 5</span>
-  <h2 class="reveal">Say <em>hello.</em></h2>
-  <p class="reveal">Hiring for applied AI, agentic systems or ML platform work, or want to compare notes on RAG evals? Email is best.</p>
-  <a class="mail reveal" href="mailto:pratikkotkar9696@gmail.com"><mark>pratikkotkar9696@gmail.com</mark></a>
-  <p class="hand reveal" aria-hidden="true">↑ that one</p>
-  <div class="contact-links mono reveal">
-    <a href="https://linkedin.com/in/pratikkotkar9696" target="_blank" rel="noopener">LinkedIn ↗</a>
-    <a href="https://github.com/pratik9696" target="_blank" rel="noopener">GitHub ↗</a>
-    <a href="https://github.com/pratik9696/resume/blob/HEAD/Pratik_Kotkar_AI_ML_Eng.pdf" target="_blank" rel="noopener">Résumé ↗</a>
-  </div>
-</section>
-
-</main>
-
-<footer class="wrap foot mono">
-  <span>© <span id="yr"></span> Pratik Kotkar</span>
-  <span>Set in Instrument Serif and IBM Plex. No trackers. Forecast not guaranteed.</span>
-  <span>Press <kbd>/</kbd> for the index · <a href="https://github.com/pratik9696/pratik_kotkar" target="_blank" rel="noopener">source</a></span>
-</footer>
-
-<!-- case-file drawer -->
-<div id="modal" class="scrim" hidden>
-  <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="m-title" tabindex="-1">
-    <button class="close mono" id="m-close" type="button" aria-label="Close case file">Close ✕</button>
-    <div id="m-body"></div>
-  </aside>
-</div>
-
-<!-- index (command palette) -->
-<div id="palette" class="scrim top" hidden>
-  <div class="pal" role="dialog" aria-modal="true" aria-label="Index search">
-    <input id="pal-input" type="text" placeholder="Search sections, case files, links…" autocomplete="off" spellcheck="false" aria-label="Search">
-    <ul id="pal-list" role="listbox"></ul>
-    <div class="pal-foot mono"><span>↑↓ move</span><span>↵ open</span><span>esc close</span></div>
-  </div>
+  </footer>
 </div>
 
 <script src="data.js"></script>
