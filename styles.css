@@ -348,3 +348,11 @@ h3 { font-size: 1.1rem; }
 .pchip:hover { background: color-mix(in srgb, var(--c1) 22%, transparent); box-shadow: 0 0 14px color-mix(in srgb, var(--c1) 35%, transparent); transform: translateY(-1px); }
 .more-wrap { display: flex; justify-content: center; margin-top: 1.4rem; }
 .more-wrap[hidden] { display: none; }
+
+/* timeline: work-inside-a-role lane */
+.sw.work { background: var(--c1); border-radius: 50%; box-shadow: 0 0 8px var(--c1); }
+#chart .wband { fill: color-mix(in srgb, var(--c1) 7%, transparent); stroke: color-mix(in srgb, var(--c1) 30%, transparent); stroke-dasharray: 3 4; }
+#chart .wband-label { fill: var(--c1); font: 500 9px "JetBrains Mono", monospace; letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+#chart .wdot { fill: var(--c1); stroke: var(--bg); stroke-width: 2; transform-box: fill-box; transform-origin: center; transition: transform .2s; filter: drop-shadow(0 0 6px var(--c1)); }
+#chart .item:hover .wdot, #chart .item:focus-visible .wdot, #chart .item.sel .wdot { transform: scale(1.5); }
+#chart.draw .wdot { animation: popin .55s cubic-bezier(.3,1.6,.5,1) var(--d, 0s) both; }

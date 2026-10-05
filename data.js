@@ -41,6 +41,30 @@ const MILESTONES = [
     text: 'Top 100 finalist at Rakathon by Rakuten with an LLM-based project, September 2023.' }
 ];
 
+
+/* Work done inside each role, drawn in the "Work" lane under its company's band.
+   role: ROLES id.  date: placed inside that role's span (month not in the source, so spread evenly).
+   open: PROJECTS id for the details overlay, or null when there is no write-up yet.
+   row: vertical slot (0-3); labels always run right from the dot. */
+const WORK_PROJECTS = [
+  { id: 'w-margin', role: 'pharmeasy', label: 'Margin optimisation', date: 2021.0, row: 0, open: null,
+    text: 'Margin optimisation project at PharmEasy.' },
+  { id: 'w-forecast', role: 'pharmeasy', label: 'Demand forecasting', date: 2021.3, row: 1, open: 'forecast',
+    text: 'Ensemble of SARIMA, ARIMA and weighted moving average: accuracy up from 30–40% to 50–70%.' },
+  { id: 'w-jit', role: 'pharmeasy', label: 'Just-in-time procurement', date: 2021.65, row: 2, open: 'echo',
+    text: 'ECHO: predicts SKUs likely to fall into the just-in-time category so hard-to-procure items can be marked out of stock up front.' },
+  { id: 'w-mix', role: 'niyo', label: 'Marketing channel optimisation', date: 2022.35, row: 3, open: 'mix',
+    text: 'Linear-programming source mix across Google, Facebook and affiliates: 5–7% weekly user growth, $20–30K monthly savings.' },
+  { id: 'w-vkyc', role: 'niyo', label: 'VKYC demand filtering', date: 2022.9, row: 0, open: 'vkyc',
+    text: 'XGBoost-driven filter that lifted VKYC approvals from 20% to 24% in the first week.' },
+  { id: 'w-elig', role: 'twid', label: 'Eligibility confidence score', date: 2023.9, row: 1, open: 'twid',
+    text: 'Pre-screening eligibility confidence scoring that cut API response time by 64% (700ms → 250ms).' },
+  { id: 'w-afflu', role: 'twid', label: 'User affluence score', date: 2024.6, row: 2, open: 'twid',
+    text: 'Ensemble affluence scoring: +8–9% conversion for new users and +16% uplift for repeat customers.' },
+  { id: 'w-dyn', role: 'twid', label: 'Dynamic eligibility', date: 2025.2, row: 0, open: null,
+    text: 'Dynamic eligibility work at Twid Pay.' }
+];
+
 /* row: vertical slot inside the projects lane; side: which way the label runs from the dot */
 const CHART_PROJECTS = [
   { id: 'p-churn', label: 'Customer-Churn', date: 2019.77, row: 0, side: 'right',
@@ -166,7 +190,7 @@ const PROJECTS = [
     arch: [],
     facts: ['Accuracy 50–70% versus 30–40% before', 'Modelled seasonality, COVID demand surges and traffic surges', 'More SKUs landed in the ±10% MAPE bucket', 'Connected central, weekly and local purchase workflows to ease procurement workload'],
     stack: ['SARIMA', 'ARIMA', 'Weighted moving average', 'Ensembling'] },
-  { id: 'echo', name: 'ECHO · SKU availability prediction', tag: 'PharmEasy · Probabilistic model', cat: ['ml', 'prod'], status: 'Production',
+  { id: 'echo', name: 'Just-in-time procurement · ECHO', tag: 'PharmEasy · Probabilistic model', cat: ['ml', 'prod'], status: 'Production',
     repo: null,
     kpi: { v: '0.2–0.3%', l: 'fewer deleted PAN-India orders' },
     blurb: 'Predicts which SKUs will fall into the just-in-time category because stock is unavailable in warehouses across India, based on how past orders for each SKU performed. Hard-to-procure products can then be marked out of stock on the platform up front.',

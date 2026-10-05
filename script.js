@@ -203,7 +203,8 @@
   const LANES = {
     ms:   { y: 40,  h: 60,  label: 'Milestones' },
     role: { y: 112, h: 62,  label: 'Roles' },
-    proj: { y: 186, h: 136, label: 'Projects' }
+    work: { y: 186, h: 112, label: 'Work' },
+    proj: { y: 310, h: 136, label: 'Projects' }
   };
   const AXIS_Y = LANES.proj.y + LANES.proj.h + 8;
   const H = AXIS_Y + 34;
@@ -227,6 +228,13 @@
   Object.values(LANES).forEach((l) => {
     svgEl('rect', { class: 'lane-bg', x: PAD_L - 8, y: l.y, width: W - PAD_L - PAD_R + 16, height: l.h, rx: 10 }, svg);
     svgEl('text', { class: 'lane-label', x: 0, y: l.y + l.h / 2 + 4 }, svg).textContent = l.label;
+  });
+
+  // shaded band per company so work items read as belonging to that role
+  ROLES.filter((r) => WORK_PROJECTS.some((w) => w.role === r.id)).forEach((r) => {
+    const x0 = x(r.start), x1 = x(r.end == null ? NOW : r.end);
+    svgEl('rect', { class: 'wband', x: x0, y: LANES.work.y + 4, width: x1 - x0 - 2, height: LANES.work.h - 8, rx: 8 }, svg);
+    svgEl('text', { class: 'wband-label', x: x0 + 8, y: LANES.work.y + 17 }, svg).textContent = r.company;
   });
 
   const grid = svgEl('g', { class: 'grid' }, svg);
@@ -276,6 +284,17 @@
     svgEl('circle', { class: 'hit', cx, cy, r: 16 }, g);
     svgEl('rect', { class: 'ms-dot', x: cx - 6, y: cy - 6, width: 12, height: 12, rx: 2, transform: `rotate(45 ${cx} ${cy})` }, g);
     svgEl('text', { class: 'tag', x: cx + 14, y: cy + 4 }, g).textContent = m.label;
+  });
+
+  WORK_PROJECTS.forEach((w) => {
+    const r = ROLES.find((q) => q.id === w.role), p = w.open && PROJECTS.find((q) => q.id === w.open);
+    const cx = x(w.date), cy = LANES.work.y + 34 + w.row * 22;
+    const link = p ? `<p style="margin-top:.6rem"><a href="#${esc(p.id)}" data-open="${esc(p.id)}">Open project details →</a></p>` : '';
+    const g = makeItem(`${w.label}, ${r.company}`, cx, (n) => select(n,
+      `<h3>${esc(w.label)}</h3><div class="meta">${esc(r.title)} · ${esc(r.company)} · ${esc(r.range)}</div><p>${esc(w.text)}</p>${link}`));
+    svgEl('circle', { class: 'hit', cx, cy, r: 14 }, g);
+    svgEl('circle', { class: 'wdot', cx, cy, r: 5 }, g);
+    svgEl('text', { class: 'tag', x: cx + 12, y: cy + 4 }, g).textContent = w.label;
   });
 
   const rowY = (row) => LANES.proj.y + 18 + row * 25;
