@@ -1,13 +1,19 @@
 # Pratik Kotkar — portfolio
 
-An interactive terminal portfolio. Plain HTML/CSS/JS, no build step, hosted on GitHub Pages.
+Plain HTML/CSS/JS, no build step, hosted on GitHub Pages. Two views behind a "Who are you?" page.
 
-Type a command (or click one): `whoami`, `impact`, `timeline`, `forecast`, `projects`, `open ezquote`, `log`, `skills`, `contact`, `theme amber`, `tour`, `help`.
+| Path | Audience | What it is |
+|---|---|---|
+| `/` | everyone | "Who are you?" chooser |
+| `/tech/` | engineers, data folks | interactive terminal: type or click `whoami`, `impact`, `timeline`, `projects`, `open ezquote`, `log`, `theme amber`, `tour`, `help` |
+| `/business/` | leadership, business, product, HR | animated purple glass version: impact, timeline, projects, experience |
 
-- `index.html` — page shell
-- `data.js` — all content (roles, projects, timeline dates, skills). Edit this to update the site.
-- `script.js` — command engine and renderers (neofetch card, git-log experience, diff results, SVG charts)
-- `styles.css` — four themes: midnight, amber, matrix, paper
+## Layout
+
+- `data.js` — **all content**, shared by both views. Edit this once to update both.
+- `index.html` — chooser page (self-contained)
+- `tech/` — `index.html`, `script.js`, `styles.css` (terminal)
+- `business/` — `index.html`, `script.js`, `styles.css` (purple glass)
 
 ## Run locally
 

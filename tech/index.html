@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" data-theme="midnight">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pratik Kotkar — Principal Data Scientist · Applied AI/ML</title>
+<meta name="description" content="Pratik Kotkar — Principal Data Scientist and Applied AI/ML lead. Agentic systems, LLM/RAG pipelines, causal ML and risk analytics. 8+ years in production ML. Type a command or click one.">
+<meta property="og:title" content="pratik@portfolio — ML systems that survive contact with production">
+<meta property="og:description" content="An interactive terminal portfolio: timeline, case files, results and experience as git log.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0b0e14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0e14'/%3E%3Ctext x='8' y='42' font-size='30' font-family='monospace' font-weight='700' fill='%23b6f23a'%3E%26gt%3B%3C/text%3E%3Crect x='34' y='20' width='16' height='26' fill='%23b6f23a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>
+  try { var t = localStorage.getItem('pk-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<div class="app" id="app">
+
+  <header class="titlebar">
+    <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="title">pratik@portfolio — zsh — bangalore</span>
+    <a class="tb-btn" href="../" aria-label="Switch view">⇄ switch</a>
+    <button id="theme-btn" class="tb-btn" type="button" aria-label="Cycle colour theme">theme</button>
+  </header>
+
+  <main id="scroll" class="scroll" tabindex="-1">
+    <h1 class="sr-only">Pratik Kotkar, Principal Data Scientist and Applied AI/ML lead</h1>
+    <div id="out" class="out" role="log" aria-live="polite" aria-label="Terminal output"></div>
+    <noscript>
+      <div class="out">
+        <p><b>Pratik Kotkar</b> — Principal Data Scientist · Applied AI/ML, Bangalore. 8+ years building production ML and agentic AI systems across fintech, e-commerce and telecom. Currently at Bicycle.ai; previously Twid Pay, Niyo, PharmEasy and Hansen Technologies.</p>
+        <p>This portfolio is an interactive terminal and needs JavaScript. Meanwhile:
+          <a href="mailto:pratikkotkar9696@gmail.com">pratikkotkar9696@gmail.com</a> ·
+          <a href="https://github.com/pratik9696">GitHub</a> ·
+          <a href="https://linkedin.com/in/pratikkotkar9696">LinkedIn</a> ·
+          <a href="https://github.com/pratik9696/resume/blob/HEAD/Pratik_Kotkar_AI_ML_Eng.pdf">Résumé</a></p>
+      </div>
+    </noscript>
+  </main>
+
+  <footer class="dock">
+    <div class="chips" id="chips" role="toolbar" aria-label="Quick commands"></div>
+    <div class="prompt" id="prompt">
+      <span class="ps1" id="ps1"></span>
+      <span class="line" id="line"><span id="pb"></span><span class="cursor" id="pc">&nbsp;</span><span id="pa"></span><span class="ghost" id="pg"></span></span>
+      <input id="in" class="hid" type="text" aria-label="Type a command, then press Enter" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="go">
+    </div>
+    <nav class="tmux" aria-label="Sections">
+      <span class="sess">[pk]</span>
+      <span class="wins" id="wins"></span>
+      <span class="tm-right"><span class="git">⎇ main ✓</span><span id="clock"></span></span>
+    </nav>
+  </footer>
+</div>
+
+<script src="../data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

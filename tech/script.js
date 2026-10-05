@@ -98,7 +98,7 @@
       ['whoami', 'neofetch-style card: who I am'], ['impact', 'measurable results, as a diff'], ['timeline', 'interactive career and project timeline'],
       ['forecast', 'my career, drawn as a forecast chart'], ['projects', 'all case files (flags: --ai --prod --app --ml)'], ['open <id>', 'read one case file, e.g. open ezquote'],
       ['log', 'work experience as a git log'], ['skills', 'what I work with'], ['education', 'education and achievements'], ['contact', 'how to reach me'],
-      ['resume', 'open the résumé PDF'], ['theme [name]', THEMES.join(' · ')], ['tour', 'guided run of everything'], ['clear', 'clear the screen'], ['history', 'commands you have run']
+      ['resume', 'open the résumé PDF'], ['switch', 'back to the “who are you?” page'], ['theme [name]', THEMES.join(' · ')], ['tour', 'guided run of everything'], ['clear', 'clear the screen'], ['history', 'commands you have run']
     ];
     return `<p class="note">click a command or type it. Tab completes, ↑/↓ recalls history.</p>
       <div class="tbl-wrap"><table class="tbl"><tbody>${rows.map(([c, d]) => `<tr class="clk" tabindex="0" data-cmd="${esc(c.split(' ')[0] === 'open' ? 'projects' : c.replace(/ \[.*|<.*/, '').trim())}"><td class="id">${esc(c)}</td><td>${esc(d)}</td></tr>`).join('')}</tbody></table></div>`;
@@ -320,6 +320,7 @@
     clear: { win: null, alias: ['cls'], run: () => {} },
     history: { win: null, alias: [], run: (a, res) => res.insertAdjacentHTML('beforeend', hist.length ? hist.map((h, i) => `<div><span class="dim">${String(i + 1).padStart(3)}</span> ${link(h)}</div>`).join('') : '<p class="dim">nothing yet</p>') },
     tour: { win: null, alias: [], run: () => {} },
+    switch: { win: null, alias: ['who', 'back', 'home'], run: (a, res) => { res.insertAdjacentHTML('beforeend', '<p class="dim">closing session… taking you back to the start.</p>'); setTimeout(() => { location.href = '../'; }, 700); } },
     pwd: { win: null, alias: [], run: (a, res) => res.insertAdjacentHTML('beforeend', '<p>/home/pratik/portfolio</p>') },
     whoareyou: { win: null, alias: [], run: (a, res) => res.insertAdjacentHTML('beforeend', '<p>a data scientist who prefers ' + link('open ezquote', 'systems with a human approval step') + '.</p>') }
   };
@@ -367,7 +368,7 @@
       res.insertAdjacentHTML('beforeend', `<p class="grn">✓ permission granted. Nice move.</p><div class="btnrow"><a class="btn" href="mailto:pratikkotkar9696@gmail.com">draft the email →</a>${link('contact')}</div>`);
       scrollTo(entry, false); setWin(5); return;
     } else if (name === 'rm') { res.insertAdjacentHTML('beforeend', '<p class="err">rm: refusing to delete a portfolio. nice try.</p>'); scrollTo(entry, false); return; }
-    else if (name === 'exit' || name === 'quit' || name === ':q') { res.insertAdjacentHTML('beforeend', '<p class="dim">there is no exit. but there is a ' + link('contact') + '.</p>'); scrollTo(entry, false); return; }
+    else if (name === 'exit' || name === 'quit' || name === ':q') { res.insertAdjacentHTML('beforeend', '<p class="dim">logout. closing session…</p>'); scrollTo(entry, false); setTimeout(() => { location.href = '../'; }, 700); return; }
     else if (name === 'vim' || name === 'nano' || name === 'emacs') { res.insertAdjacentHTML('beforeend', '<p class="dim">opinions on editors available on request.</p>'); scrollTo(entry, false); return; }
 
     const key = resolve(name);
